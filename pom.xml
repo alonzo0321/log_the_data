@@ -40,6 +40,7 @@
 				      <businessGroup>${business}</businessGroup>
 				      <workers>${workers}</workers>
 				      <workerType>${vCore}</workerType>
+				      <target>CH2</target>
 				      <objectStoreV2>true</objectStoreV2>
 				      <properties>
 				        <http.port>${http.port}</http.port>
