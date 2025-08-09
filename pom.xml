@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.mycompany</groupId>
@@ -42,21 +42,23 @@
         <version>${mule.maven.plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <target>CH2</target> <!-- ✅ CloudHub 2.0 -->
-          <username>${anypoint.username}</username>
-          <password>${anypoint.password}</password>
-          <applicationName>${project.artifactId}</applicationName>
-          <environment>${env}</environment>
           <deployment>
-            <runtimeVersion>${deployment.app.runtime}</runtimeVersion>
-            <region>${deployment.region}</region>
-            <workers>${deployment.workers}</workers>
-            <workerType>${deployment.workerType}</workerType>
-            <objectStoreV2>true</objectStoreV2>
-            <properties>
-              <http.port>${http.port}</http.port>
-              <mule.env>${env}</mule.env>
-            </properties>
+            <cloudHubDeployment>
+              <uri>https://anypoint.mulesoft.com</uri>
+              <username>${anypoint.username}</username>
+              <password>${anypoint.password}</password>
+              <applicationName>${project.artifactId}</applicationName>
+              <environment>${env}</environment>
+              <muleVersion>${deployment.app.runtime}</muleVersion>
+              <region>${deployment.region}</region>
+              <workers>${deployment.workers}</workers>
+              <workerType>${deployment.workerType}</workerType>
+              <objectStoreV2>true</objectStoreV2>
+              <properties>
+                <http.port>${http.port}</http.port>
+                <mule.env>${env}</mule.env>
+              </properties>
+            </cloudHubDeployment>
           </deployment>
         </configuration>
       </plugin>
