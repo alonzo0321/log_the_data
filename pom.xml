@@ -32,19 +32,18 @@
 				<configuration>
 				    <cloudHubDeployment>
 				      <uri>https://anypoint.mulesoft.com</uri>
-				      <muleVersion>${deployment.app.runtime}</muleVersion>
+				      <muleVersion>${mule.version}</muleVersion>
 				      <username>${anypoint.username}</username>
 				      <password>${anypoint.password}</password>
 				      <applicationName>${project.artifactId}</applicationName>
 				      <environment>${env}</environment>
-				      <region>${deployment.region}</region>
-				      <workers>${deployment.workers}</workers>
-				      <workerType>${deployment.workerType}</workerType>
+				      <businessGroup>${business}</businessGroup>
+				      <workers>${workers}</workers>
+				      <workerType>${vCore}</workerType>
 				      <objectStoreV2>true</objectStoreV2>
-				      <target>CH2</target> <!-- CloudHub 2.0 -->
 				      <properties>
 				        <http.port>${http.port}</http.port>
-				        <mule.env>${env}</mule.env>
+
 				      </properties>
 				      
 				    </cloudHubDeployment>
