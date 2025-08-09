@@ -8,6 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4ffe6f99-bb37-4437-9531-7e398ad01420" >
 		<http:listener-connection host="0.0.0.0" port="8085" />
 	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="78663913-7a74-4944-bc16-d899df00a9aa" file="config_dev.yaml" />
 	<flow name="log_the_dataFlow" doc:id="4a90b041-427d-44f8-afe7-ed18da733c1a" >
 		<http:listener doc:name="Listener" doc:id="04f06aa7-eabc-4fd9-825c-a54326fcfb2b" config-ref="HTTP_Listener_config" path="/msg"/>
 		<logger level="INFO" doc:name="Logger" doc:id="a800dfa3-5a0e-4ed2-9a62-637b63ff4106" message="--------------msg logging start---------------"/>
