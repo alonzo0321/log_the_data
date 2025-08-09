@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4ffe6f99-bb37-4437-9531-7e398ad01420" >
+		<http:listener-connection host="0.0.0.0" port="8085" />
+	</http:listener-config>
+	<flow name="log_the_dataFlow" doc:id="4a90b041-427d-44f8-afe7-ed18da733c1a" >
+		<http:listener doc:name="Listener" doc:id="04f06aa7-eabc-4fd9-825c-a54326fcfb2b" config-ref="HTTP_Listener_config" path="/msg"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a800dfa3-5a0e-4ed2-9a62-637b63ff4106" message="--------------msg logging start---------------"/>
+		<set-variable value="#[attributes.queryParams.var1]" doc:name="var1" doc:id="1176111b-6db3-4eca-bd41-b143e4dd9182" variableName="var1"/>
+		<set-variable value="#[attributes.queryParams.var2]" doc:name="var2" doc:id="b1b435b9-5ea8-40ba-baee-f42bc66a7493" variableName="var2"/>
+		<ee:transform doc:name="Transform Message" doc:id="2af6e773-803f-4b3c-9cca-33c124b68091" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"output": (attributes.queryParams.var1 as Number) + (attributes.queryParams.var2 as Number) as Number
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="da0c91cf-fb96-47de-af8f-dfa5d7dfc0c4" message="#[payload]"/>
+	</flow>
+</mule>
