@@ -19,7 +19,7 @@
     <app.runtime>4.9.0</app.runtime>
     <mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
 
-    <!-- Defaults (can be overridden via CLI or Jenkins) -->
+    <!-- Deployment properties -->
     <env>Sandbox</env>
     <deployment.app.runtime>${app.runtime}</deployment.app.runtime>
     <deployment.region>us-east-2</deployment.region>
@@ -42,24 +42,12 @@
         <version>${mule.maven.plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <deployment>
-            <cloudHubDeployment>
-              <uri>https://anypoint.mulesoft.com</uri>
-              <username>${anypoint.username}</username>
-              <password>${anypoint.password}</password>
-              <applicationName>${project.artifactId}</applicationName>
-              <environment>${env}</environment>
-              <muleVersion>${deployment.app.runtime}</muleVersion>
-              <region>${deployment.region}</region>
-              <workers>${deployment.workers}</workers>
-              <workerType>${deployment.workerType}</workerType>
-              <objectStoreV2>true</objectStoreV2>
-              <properties>
-                <http.port>${http.port}</http.port>
-                <mule.env>${env}</mule.env>
-              </properties>
-            </cloudHubDeployment>
-          </deployment>
+          <target>CH2</target> <!-- CloudHub 2.0 -->
+          <username>${anypoint.username}</username>
+          <password>${anypoint.password}</password>
+          <applicationName>${project.artifactId}</applicationName>
+          <environment>${env}</environment>
+          <!-- No deployment block here -->
         </configuration>
       </plugin>
     </plugins>
